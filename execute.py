@@ -49,7 +49,7 @@ class S3Filewrite:
         s3fs.S3FileSystem = S3FileSystemPatched
         pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() - 1)
         start = time.time()
-        for i in range(0,n,args.file_max_num):
+        for i in range(0,n):
             pool.apply_async(multiprocessingWrite, args=(i, data[i*args.file_max_num:min((i+1)*args.file_max_num,n_data)],self.output_path,))
         pool.close()
         pool.join()
